@@ -4,11 +4,11 @@ ToDo
   - [] When the task is created, it should be stored inside of a database (SQL)
       - [X] create table
       - [] Whether or not a task is complete should also be stored in the database.
-      - [] link '#task' input to DB
-      - [] on add click, add task to DB
+      - [X] link '#task' input to DB
+      - [X] on add click, add task to DB
 
-  - [] Whenever a task is created the front end should refresh to show all tasks that need to be completed.
-      - [] refresh front end when task is "added"?
+  - [???] Whenever a task is created the front end should refresh to show all tasks that need to be completed.
+      - [???] refresh front end when task is "added"?
 
   - [] Each task should have an option to 'Complete' or 'Delete'.
       - [] event listener to complete task and alter it on document
