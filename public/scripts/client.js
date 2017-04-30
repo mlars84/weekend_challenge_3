@@ -21,9 +21,9 @@ function getAllTasks() {
       $('#taskList').append('<ul id="todos">TASK LIST - </ul>');
       for ( var i = 0; i < response.length; i++ ) {
         if( response[i].completionstatus === true ){
-          $( '#taskList' ).append('<div class="finishedTasks" data-id=' + response[i].id + '><span>' + " - " + response[i].taskname + " - " + '</span><img id="checkImg"src="https://openclipart.org/download/253846/1467299975.svg" </><button id="delete" data-id=' + response[i].id + ' type="button" name="button">delete</button></div>');
+          $( '#taskList' ).append('<div class="finishedTasks" data-id=' + response[i].id + '><span>' + " " + response[i].taskname + " - " + '</span><img id="checkImg"src="https://openclipart.org/download/253846/1467299975.svg" </><button id="delete" data-id=' + response[i].id + ' type="button" name="button">delete</button></div>');
         } else{
-          $( '#taskList' ).append('<div class="listedTasks" data-id=' + response[i].id + '><span>' + " - " + response[i].taskname + "  - " + '</span><button id="completed" data-id=' + response[i].id + ' type="button">completed?</button><button id="delete" data-id=' + response[i].id + ' type="button" name="button">delete</button></div>');
+          $( '#taskList' ).append('<div class="listedTasks" data-id=' + response[i].id + '><span>' + " " + response[i].taskname + "  - " + '</span><button id="completed" data-id=' + response[i].id + ' type="button">completed?</button><button id="delete" data-id=' + response[i].id + ' type="button" name="button">delete</button></div>');
         }
       }  // end for
     } // end success
