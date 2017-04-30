@@ -24,26 +24,9 @@ app.get( '/', function( req, res ) {
   res.sendFile( path.resolve( 'public/views/index.html' ));
 });
 
-// /addTask POST
-app.post( '/addTask', function ( req, res ) {
-  pool.connect( function( err, connection, done ){
-    if ( err ){
-      console.log( err );
-      res.sendStatus( 400 );
-    }
-    else{
-      console.log('connected  to DB', req.body);
-      connection.query("INSERT INTO tasks (taskname) VALUES ($1)", [req.body.taskname]);
-      done();
-      res.sendStatus(200);
-    } // end no error
-  }); // end pool.connect
-}); // end addTask POST
-
-var tasksArray = [];
 // /getAllTasks GET
 app.get( '/getAllTasks', function( req, res ) {
-  tasksArray = [];
+  var tasksArray = [];
   pool.connect( function( err, connection, done ){
     if ( err ){
       console.log( err );
@@ -62,7 +45,53 @@ app.get( '/getAllTasks', function( req, res ) {
       }); // end on end
     } // end no error
   }); // end pool.connect
-});
+}); // end getAllTasks POST
+
+// /addTask POST
+app.post( '/addTask', function ( req, res ) {
+  pool.connect( function( err, connection, done ){
+    if ( err ){
+      console.log( err );
+      res.sendStatus( 400 );
+    }
+    else{
+      console.log('connected  to DB', req.body);
+      connection.query("INSERT INTO tasks (taskname, completionstatus) VALUES ($1, $2)", [req.body.taskname, req.body.completionstatus]);
+      done();
+      res.sendStatus(200);
+    } // end no error
+  }); // end pool.connect
+}); // end addTask POST
+
+app.post('/complete', function( req, res ) {
+  pool.connect( function( err, connection, done ){
+    if( err ){
+      console.log( err );
+      res.send( 400 );
+    }
+    else{
+      console.log( 'connected to DB' );
+      connection.query( "UPDATE tasks SET completionstatus=true where id=$1", [req.body.id]);
+      done();
+      res.sendStatus(200);
+    } // end no error
+  }); //end pool.connect
+});  // end complete POST
+
+app.delete( '/delete', function( req, res ) {
+  pool.connect( function( err, connection, done ){
+    if( err ){
+      console.log( err );
+      res.send( 400 );
+    }
+    else{
+      console.log('connected to db');
+      connection.query( "DELETE from tasks where id=$1", [req.body.id]);
+      done();
+      res.sendStatus(200);
+    } // end no error
+  }); // end pool.connect
+});  // end delete DELETE
 
 // listening on 3001...
 app.listen(port, function(req, res) {

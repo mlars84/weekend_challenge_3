@@ -1,31 +1,15 @@
 $( document ).ready( onReady );
 console.log( 'JQ' );
 
+// onReady function gets all tasks from DB and runs event listeners
 function onReady() {
-  console.log( ' in onReady' );
   $( '#add' ).on( 'click', addTask);
   getAllTasks();
-  addTask();
-  $( '#complete' ).on( 'click', completeTask );
-  $( '#delete' ).on( 'click', deleteTask );
+  $( document ).on( 'click', '#completed', completedTask );
+  $( document ).on( 'click', '#delete', deleteTask );
 } // end onReady
 
-function addTask() {
-  console.log( 'add button clicked' );
-  var taskToSend = {
-    taskname: $('#task').val(),
-  };
-
-  $.ajax({
-    url: '/addTask',
-    type: 'POST',
-    data: taskToSend,
-    success: function( response ) {
-      console.log( response );
-    } // end success
-  }); // end ajax POST
-} // end addTask
-
+// getAllTasks gets any/all tasks from DB and appends them to the DOM
 function getAllTasks() {
   console.log('in getAllTasks');
   $.ajax({
@@ -34,20 +18,61 @@ function getAllTasks() {
     success: function ( response ){
       console.log( 'back from server' + response );
       $('#taskList').empty();
-      $('#taskList').append('<ul id="todos">TASK LIST - <button id="complete">complete</button><button id="delete">delete</button></ul>');
+      $('#taskList').append('<ul id="todos">TASK LIST - </ul>');
       for ( var i = 0; i < response.length; i++ ) {
-        console.log( response[i] );
-        // append task info at index i to DOM
-        $('#todos').append('<p>' + response[i].taskname + '</p>');
-      } // end for
+        if( response[i].completionstatus === true ){
+          $( '#taskList' ).append('<div class="listedTasks" data-id=' + response[i].id + '><span>' + response[i].taskname + " - " + '</span><button id="completed" data-id=' + response[i].id + ' type="button">completed</button><button id="delete" data-id=' + response[i].id + ' type="button" name="button">delete</button></div>');
+        } else{
+          $( '#taskList' ).append('<div class="listedTasks" data-id=' + response[i].id + '><span>' + response[i].taskname + "  - " + '</span><button id="completed" data-id=' + response[i].id + ' type="button">completed</button><button id="delete" data-id=' + response[i].id + ' type="button" name="button">delete</button></div>');
+        }
+      }  // end for
     } // end success
   }); // end ajax GET
 } // end getAllTasks
 
-function completeTask() {
-  console.log( 'complete button clicked' );
-} // end completeTask
+// addTask function adds tasks from user input into the DB and runs getAllTasks
+function addTask() {
+  console.log( 'add button clicked' );
+  var taskToSend = {
+    taskname: $('#task').val(),
+    completionstatus: false
+  };
 
+  $.ajax({
+    url: '/addTask',
+    type: 'POST',
+    data: taskToSend,
+    success: function( response ) {
+      console.log('addTask -->', response );
+      $('form').trigger('reset');
+      getAllTasks();
+    } // end success
+  }); // end ajax POST
+} // end addTask
+
+// deleteTask once confirmed OK, deletes tasks from both DOM and DB
 function deleteTask() {
-  console.log( 'delete button clicked' );
+  console.log('delete button clicked');
+  // ajax delete...
+  if(confirm( 'Do you really wish to delete this task?' ) === true ) {
+    var deleteTaskId = $(this).data('id');
+    idToSend = {
+      id: deleteTaskId
+    };
+  } // end if
+  $.ajax({
+    url: '/delete',
+    type: 'DELETE',
+    data: idToSend,
+    success: function( response ) {
+      console.log( response );
+      getAllTasks();
+    }
+  }); // end ajax DELETE
 } // end deleteTask
+
+// completedTask should indicate on DOM that task is complete and change DB completionstatus to TRUE
+function completedTask() {
+  console.log('completed button clicked');
+  // ajax POST...
+}

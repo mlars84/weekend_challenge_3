@@ -14,8 +14,13 @@ ul {
 #add {
   text-align: center;
   font-family: 'Peddana', serif;
+  color: white;
   font-size: 14px;
-  border-radius: 10px;
+  border-radius: 5px;
+  width: 60px;
+  height: 30px;
+  background-color: black;
+  border: 1px solid white;
 }
 
 #task {
@@ -23,19 +28,35 @@ ul {
   font-family: 'Peddana', serif;
   font-size: 14px;
   width: 65%;
-  border-radius: 10px;
+  border-radius: 5px;
+  border: 1px solid black;
 }
 
-#complete {
+#completed {
   text-align: center;
   font-family: 'Peddana', serif;
+  color: white;
   font-size: 14px;
-  border-radius: 10px;
+  border-radius: 5px;
+  width: 60px;
+  height: 25px;
+  background-color: darkgreen;
+  border: 1px solid black;
 }
 
 #delete {
   text-align: center;
   font-family: 'Peddana', serif;
+  color: white;
   font-size: 14px;
-  border-radius: 10px;
+  border-radius: 5px;
+  width: 60px;
+  height: 25px;
+  background-color: red;
+  border: 1px solid black;
+}
+
+.listedTasks {
+  font-style: italic;
+  outline: 1px solid black;
 }
