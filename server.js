@@ -63,7 +63,7 @@ app.post( '/addTask', function ( req, res ) {
   }); // end pool.connect
 }); // end addTask POST
 
-app.post('/complete', function( req, res ) {
+app.post('/completed', function( req, res ) {
   pool.connect( function( err, connection, done ){
     if( err ){
       console.log( err );
@@ -73,7 +73,7 @@ app.post('/complete', function( req, res ) {
       console.log( 'connected to DB' );
       connection.query( "UPDATE tasks SET completionstatus=true where id=$1", [req.body.id]);
       done();
-      res.sendStatus(200);
+      res.sendStatus( 200 );
     } // end no error
   }); //end pool.connect
 });  // end complete POST
@@ -88,7 +88,7 @@ app.delete( '/delete', function( req, res ) {
       console.log('connected to db');
       connection.query( "DELETE from tasks where id=$1", [req.body.id]);
       done();
-      res.sendStatus(200);
+      res.sendStatus( 200 );
     } // end no error
   }); // end pool.connect
 });  // end delete DELETE

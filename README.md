@@ -12,8 +12,8 @@ ToDo
       - [X] refresh front end when task is "added"?
 
   - [] Each task should have an option to 'Complete' or 'Delete'.
-      - [] event listener to complete task and alter it on document
-      - [] When a task is complete, its visual representation should change on the front end (for example, the background of the task container could change from gray to green, as well as the complete option 'checked off'.
+      - [X] event listener to complete task and alter it on document
+      - [X] When a task is complete, its visual representation should change on the front end (for example, the background of the task container could change from gray to green, as well as the complete option 'checked off'.
 
   - [X] Deleting a task should remove it both from the Front End as well as the Database.
       - [X] event listener to delete from both DOM and DB
