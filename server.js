@@ -6,6 +6,7 @@ var pg = require( 'pg' );
 var app = express();
 var port = 3001;
 
+// config
 var config = {
   database: 'tasks-week3',
   host: 'localhost',
@@ -13,6 +14,7 @@ var config = {
   max: 10
 };
 
+// pool with config
 var pool = new pg.Pool( config );
 
 //uses
@@ -63,6 +65,7 @@ app.post( '/addTask', function ( req, res ) {
   }); // end pool.connect
 }); // end addTask POST
 
+// /completed POST
 app.post('/completed', function( req, res ) {
   pool.connect( function( err, connection, done ){
     if( err ){
@@ -76,8 +79,9 @@ app.post('/completed', function( req, res ) {
       res.sendStatus( 200 );
     } // end no error
   }); //end pool.connect
-});  // end complete POST
+});  // end completed POST
 
+// / delete DELETE
 app.delete( '/delete', function( req, res ) {
   pool.connect( function( err, connection, done ){
     if( err ){

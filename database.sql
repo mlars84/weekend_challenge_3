@@ -1,6 +1,5 @@
 CREATE TABLE tasks (
     id SERIAL PRIMARY KEY NOT NULL,
-    taskname VARCHAR(12) UNIQUE,
+    taskname VARCHAR(200),
     completionstatus boolean
-    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
