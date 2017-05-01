@@ -1,12 +1,16 @@
 h1 {
   text-decoration: overline;
-  color: #e3b36b;
+  color: #ffa365;
 }
 
 body {
-  background-color: #e2e0dd;
+  background-color: #ffffc8;
+  background-image: url('https://ak2.picdn.net/shutterstock/videos/8943553/thumb/1.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   text-align: left;
   font-family: 'Peddana', serif;
+  padding-left: 20px;
 }
 
 ul {
@@ -17,7 +21,7 @@ ul {
   color: black;
   /*border: 1px solid black;*/
   border-radius: 10px;
-  background-color: #e3b36b;
+  background-color: #ffffc1;
   margin-right: 800px
 }
 
@@ -29,7 +33,7 @@ ul {
   border-radius: 5px;
   width: 60px;
   height: 30px;
-  background-color: #e3b36b;
+  background-color: #ffffc1;
   border: 1px solid black;
 }
 
@@ -40,7 +44,6 @@ ul {
   width: 40%;
   border-radius: 5px;
   border: 1px solid black;
-  background-color: : #FAFAD2;
 }
 
 #completed {
@@ -51,7 +54,7 @@ ul {
   border-radius: 5px;
   width: 60px;
   height: 25px;
-  background-color: #32CD32;
+  background-color: #ac9a1c;
   border: 1px solid black;
 }
 
@@ -63,7 +66,7 @@ ul {
   border-radius: 5px;
   width: 60px;
   height: 25px;
-  background-color: #ff001a;
+  background-color: #d4866a;
   border: 1px solid black;
 }
 
@@ -71,7 +74,7 @@ ul {
   font-family: 'Peddana', serif;
   font-style: italic;
   border-radius: 10px;
-  background-color: #e3b36b;
+  background-color: #ffffc1;
   margin-right: 500px;
   padding: 5px 5px 5px 5px;
 }
@@ -80,7 +83,7 @@ ul {
   font-family: 'Peddana', serif;
   font-style: italic;
   color: black;
-  background-color: white;
+  background-color: #ac9a1c;
   padding: 5px 5px 5px 5px;
   margin-right: 500px;
   border-radius: 10px;
